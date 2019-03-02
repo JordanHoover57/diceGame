@@ -16,7 +16,7 @@
 }
 
 body {
-    background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), url(back.jpg);
+    background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), url(HL_wallpaper.jpg);
     background-size: cover;
     background-position: center;
     font-family: Lato;
@@ -27,7 +27,7 @@ body {
 }
 
 .wrapper {
-    width: 1000px;
+    width: 850px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -79,7 +79,7 @@ body {
     position: absolute;
     color: rgb(230, 21, 31);
     top: -7px;
-    right: 10px;
+    right: -13px;
     
 }
 
