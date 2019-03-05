@@ -76,7 +76,7 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
 });
 
 document.querySelector('.btn-score').addEventListener('click',function(){
-    playToScore = prompt('Enter the score you would like to play until');
+    playToScore = prompt('Enter the score you would like to play up until?');
 });
 
 document.querySelector('.btn-new').addEventListener('click',init);
