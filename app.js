@@ -30,7 +30,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     //you need to account for the first roll in which it will be compared to 0
     //then set it after each possibility
     //dice roll via random number
-    var diceNum = 6//Math.floor(Math.random() * 6) + 1;
+    var diceNum = Math.floor(Math.random() * 6) + 1;
 
     //display the dice rolling
     var diceDOM = document.querySelector('.dice')
