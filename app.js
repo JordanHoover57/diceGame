@@ -30,7 +30,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     //you need to account for the first roll in which it will be compared to 0
     //then set it after each possibility
     //dice roll via random number
-    var diceNum = Math.floor(Math.random() * 6) + 1;
+    var diceNum = 6//Math.floor(Math.random() * 6) + 1;
 
     //display the dice rolling
     var diceDOM = document.querySelector('.dice')
@@ -38,19 +38,14 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     diceDOM.src = 'dice-' + diceNum + '.png';
     
     //Dice consequences
-    if(diceNum !== 1){
+    if(prevDiceRoll ===6 && diceNum ===6){
+        scores[activePlayer] = 0;
+        document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+        nextPlayer();
+    }else if(diceNum !== 1){
         roundScore += diceNum;
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
-        doubleSix = false;
-        if(prevDiceRoll === 6 && diceNum === 6){
-            scores[activePlayer] = 0;
-            document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-            nextPlayer();
-            doubleSix = true;
-        }
-        if(!doubleSix){
-            prevDiceRoll = diceNum;
-        }
+        prevDiceRoll = diceNum;
     }else{
        nextPlayer();
     }
