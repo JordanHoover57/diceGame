@@ -11,7 +11,7 @@ GAME RULES:
 //***********************************************
 //******GLOBAL VARIABLES*************************
 //***********************************************
-var scores, gamePlaying, roundScore, activePlayer, dice;
+var scores, gamePlaying, roundScore, activePlayer, prevDiceRoll,playToScore, dice;
 
 //setTimeout(function(){ alert("Hello"); }, 3000);
 
@@ -27,7 +27,8 @@ init();
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
     if(gamePlaying){
-
+    //you need to account for the first roll in which it will be compared to 0
+    //then set it after each possibility
     //dice roll via random number
     var diceNum = Math.floor(Math.random() * 6) + 1;
 
@@ -40,6 +41,16 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     if(diceNum !== 1){
         roundScore += diceNum;
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
+        doubleSix = false;
+        if(prevDiceRoll === 6 && diceNum === 6){
+            scores[activePlayer] = 0;
+            document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+            nextPlayer();
+            doubleSix = true;
+        }
+        if(!doubleSix){
+            prevDiceRoll = diceNum;
+        }
     }else{
        nextPlayer();
     }
@@ -52,7 +63,7 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
     scores[activePlayer] += roundScore;
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
-        if(scores[activePlayer] >= 50){
+        if(scores[activePlayer] >= playToScore){
             document.getElementById('name-' + activePlayer).textContent = 'Winner!';
             document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -62,6 +73,10 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
             nextPlayer();
         }
     }
+});
+
+document.querySelector('.btn-score').addEventListener('click',function(){
+    playToScore = prompt('Enter the score you would like to play to');
 });
 
 document.querySelector('.btn-new').addEventListener('click',init);
@@ -86,13 +101,18 @@ function nextPlayer(){
 
     document.querySelector('.dice').style.display = 'none';
 
+    prevDiceRoll = 0;
+    
+
 };
 
 function init(){
     scores = [0,0];
     roundScore = 0;
     activePlayer = 0;
+    prevDiceRoll = 0;
     gamePlaying = true;
+    playToScore = 50;
 
     document.querySelector('.dice').style.display = 'none';
 

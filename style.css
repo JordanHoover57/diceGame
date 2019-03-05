@@ -141,6 +141,7 @@ i {
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 .btn-rules { top: 530px;}
+.btn-score { top: 100px;}
 
 .dice {
     position: absolute;
@@ -199,7 +200,7 @@ i {
       color: white;
   }
 
-  .modal-body {padding: 2px 16px;
+  .modal-body {padding: 2px 25px;
   }
 
   .modal-footer {
